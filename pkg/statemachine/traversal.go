@@ -8,9 +8,9 @@ package statemachine
 
 import (
 	"fmt"
+	"maps"
 	"regexp"
 	"slices"
-	"sort"
 	"strings"
 )
 
@@ -238,11 +238,7 @@ func sanitizeMermaidID(id string) string {
 }
 
 func writeMermaidAliases(b *strings.Builder, aliases map[string]string) {
-	rawIDs := make([]string, 0, len(aliases))
-	for raw := range aliases {
-		rawIDs = append(rawIDs, raw)
-	}
-	sort.Strings(rawIDs)
+	rawIDs := slices.Sorted(maps.Keys(aliases))
 	for _, raw := range rawIDs {
 		alias := aliases[raw]
 		fmt.Fprintf(b, "    state %q as %s\n", raw, alias)

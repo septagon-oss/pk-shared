@@ -7,9 +7,10 @@ package composition
 // Convention: C-10 (shared builders return errors), C-14 (file purpose declaration).
 
 import (
+	"cmp"
 	"fmt"
 	"reflect"
-	"sort"
+	"slices"
 	"strconv"
 	"strings"
 )
@@ -127,7 +128,7 @@ func Validate(app *Application, catalog []ModuleCatalogEntry) *ValidationReport 
 				fmt.Sprintf("module %q is experimental; review its stability before production use", name))
 		}
 	}
-	sort.Strings(report.Suggestions)
+	slices.Sort(report.Suggestions)
 
 	for _, overlay := range app.Spec.Overlays {
 		target := strings.TrimSpace(overlay.Target)
@@ -167,7 +168,7 @@ func EnabledModules(app *Application) []string {
 			names = append(names, name)
 		}
 	}
-	sort.Strings(names)
+	slices.Sort(names)
 	return names
 }
 
@@ -190,8 +191,8 @@ func NewApplicationFromPreset(name, preset string, catalog []ModuleCatalogEntry)
 			app.Spec.Modules = append(app.Spec.Modules, ModuleRef{Name: id, Enabled: true})
 		}
 	}
-	sort.SliceStable(app.Spec.Modules, func(i, j int) bool {
-		return app.Spec.Modules[i].Name < app.Spec.Modules[j].Name
+	slices.SortStableFunc(app.Spec.Modules, func(a, b ModuleRef) int {
+		return cmp.Compare(a.Name, b.Name)
 	})
 	return app
 }
@@ -644,7 +645,7 @@ func deepCopyAny(value any) any {
 		}
 		return out
 	case []string:
-		return append([]string(nil), typed...)
+		return slices.Clone(typed)
 	default:
 		return value
 	}
