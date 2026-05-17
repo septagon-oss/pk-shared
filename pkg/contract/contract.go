@@ -2,6 +2,12 @@
 // repos.
 package contract
 
+// contract.go owns the smallest cross-repo identifiers that would otherwise
+// create dependency cycles between OSS layers.
+//
+// ADR: ADR-0029 (file purpose declaration).
+// Convention: C-14 (every Go file declares its purpose).
+
 import "strings"
 
 // ModuleID is the stable identifier of a PlatformKit module.
