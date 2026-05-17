@@ -114,6 +114,7 @@ func TestTraversal(t *testing.T) {
 	t.Parallel()
 
 	def := bookingLifecycle()
+	def.States[1].Transitions[0].Metadata["labels"] = map[string]string{"tone": "primary"}
 	assertStrings(t, AllStates(def), []string{"draft", "requested", "confirmed", "completed", "cancelled"})
 	assertStrings(t, AllEvents(def), []string{"request", "cancel", "confirm", "complete"})
 
@@ -136,6 +137,12 @@ func TestTraversal(t *testing.T) {
 	}
 	if got := AvailableTransitions(def, "nonexistent"); got != nil {
 		t.Fatalf("AvailableTransitions(nonexistent) = %#v", got)
+	}
+
+	requested := FindState(def, "requested")
+	requested.Transitions[0].Metadata["labels"].(map[string]string)["tone"] = "mutated"
+	if def.States[1].Transitions[0].Metadata["labels"].(map[string]string)["tone"] != "primary" {
+		t.Fatalf("FindState returned aliased nested metadata: %#v", def.States[1].Transitions[0].Metadata)
 	}
 }
 

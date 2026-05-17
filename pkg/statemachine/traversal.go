@@ -162,6 +162,8 @@ func deepCopyAny(value any) any {
 	switch typed := value.(type) {
 	case map[string]any:
 		return deepCopyMap(typed)
+	case map[string]string:
+		return maps.Clone(typed)
 	case []any:
 		out := make([]any, len(typed))
 		for i, item := range typed {
