@@ -16,7 +16,9 @@ import (
 )
 
 const (
-	SeverityError   = "error"
+	// SeverityError marks a validation issue that makes a descriptor invalid.
+	SeverityError = "error"
+	// SeverityWarning marks a non-fatal validation issue worth surfacing.
 	SeverityWarning = "warning"
 )
 

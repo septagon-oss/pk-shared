@@ -11,21 +11,38 @@ import (
 	"strings"
 )
 
+// Validation error codes are stable, machine-readable classifications returned
+// in ValidationError.Code.
 const (
-	CodeNilDefinition       = "nil_definition"
-	CodeNoStates            = "no_states"
+	// CodeNilDefinition indicates the definition was nil.
+	CodeNilDefinition = "nil_definition"
+	// CodeNoStates indicates the definition declared no states.
+	CodeNoStates = "no_states"
+	// CodeMissingInitialState indicates the initial state does not exist.
 	CodeMissingInitialState = "missing_initial_state"
-	CodeMissingStateID      = "missing_state_id"
-	CodeDuplicateID         = "duplicate_id"
-	CodeInvalidStateType    = "invalid_state_type"
-	CodeMissingTarget       = "missing_target"
-	CodeMissingEvent        = "missing_event"
+	// CodeMissingStateID indicates a state is missing its ID.
+	CodeMissingStateID = "missing_state_id"
+	// CodeDuplicateID indicates two states share the same ID.
+	CodeDuplicateID = "duplicate_id"
+	// CodeInvalidStateType indicates a state declared an unknown type.
+	CodeInvalidStateType = "invalid_state_type"
+	// CodeMissingTarget indicates a transition targets a non-existent state.
+	CodeMissingTarget = "missing_target"
+	// CodeMissingEvent indicates a transition is missing its event name.
+	CodeMissingEvent = "missing_event"
+	// CodeFinalHasTransitions indicates a final state declared transitions.
 	CodeFinalHasTransitions = "final_has_transitions"
-	CodeCompoundNoChildren  = "compound_no_children"
-	CodeParallelNoChildren  = "parallel_no_children"
-	CodeInvalidActionType   = "invalid_action_type"
-	CodeMissingInputSchema  = "missing_input_schema"
-	CodeMissingPermission   = "missing_permission"
+	// CodeCompoundNoChildren indicates a compound state has no children.
+	CodeCompoundNoChildren = "compound_no_children"
+	// CodeParallelNoChildren indicates a parallel state has no children.
+	CodeParallelNoChildren = "parallel_no_children"
+	// CodeInvalidActionType indicates an action declared an unknown type.
+	CodeInvalidActionType = "invalid_action_type"
+	// CodeMissingInputSchema indicates a transition requires input but has no schema.
+	CodeMissingInputSchema = "missing_input_schema"
+	// CodeMissingPermission indicates a transition has an empty required permission.
+	CodeMissingPermission = "missing_permission"
+	// CodeMissingActionConfig indicates an action is missing its config.
 	CodeMissingActionConfig = "missing_action_config"
 )
 

@@ -16,31 +16,45 @@ import (
 type CellRole string
 
 const (
-	CellRoleControlPlane   CellRole = "control-plane"
-	CellRoleSharedService  CellRole = "shared-service"
-	CellRoleTenantService  CellRole = "tenant-service"
+	// CellRoleControlPlane is a cell that runs platform control-plane services.
+	CellRoleControlPlane CellRole = "control-plane"
+	// CellRoleSharedService is a cell shared across tenants or environments.
+	CellRoleSharedService CellRole = "shared-service"
+	// CellRoleTenantService is a cell that serves a single tenant's workload.
+	CellRoleTenantService CellRole = "tenant-service"
+	// CellRoleInfrastructure is a cell that provides infrastructure foundations.
 	CellRoleInfrastructure CellRole = "infrastructure"
-	CellRoleWorkload       CellRole = "workload"
+	// CellRoleWorkload is a cell that runs an application workload.
+	CellRoleWorkload CellRole = "workload"
 )
 
 // CellScope identifies the routing and ownership scope of a cell.
 type CellScope string
 
 const (
-	CellScopeGlobal      CellScope = "global"
+	// CellScopeGlobal scopes a cell across the entire platform.
+	CellScopeGlobal CellScope = "global"
+	// CellScopeEnvironment scopes a cell to a single environment.
 	CellScopeEnvironment CellScope = "environment"
-	CellScopeRegion      CellScope = "region"
-	CellScopeTenant      CellScope = "tenant"
-	CellScopeWorkload    CellScope = "workload"
+	// CellScopeRegion scopes a cell to a single region.
+	CellScopeRegion CellScope = "region"
+	// CellScopeTenant scopes a cell to a single tenant.
+	CellScopeTenant CellScope = "tenant"
+	// CellScopeWorkload scopes a cell to a single workload.
+	CellScopeWorkload CellScope = "workload"
 )
 
 // CellIsolation identifies a cell's isolation model.
 type CellIsolation string
 
 const (
-	CellIsolationShared    CellIsolation = "shared"
-	CellIsolationPooled    CellIsolation = "pooled"
-	CellIsolationTenant    CellIsolation = "tenant"
+	// CellIsolationShared shares the cell across all consumers.
+	CellIsolationShared CellIsolation = "shared"
+	// CellIsolationPooled pools the cell across a group of consumers.
+	CellIsolationPooled CellIsolation = "pooled"
+	// CellIsolationTenant isolates the cell per tenant.
+	CellIsolationTenant CellIsolation = "tenant"
+	// CellIsolationDedicated dedicates the cell to a single consumer.
 	CellIsolationDedicated CellIsolation = "dedicated"
 )
 

@@ -22,7 +22,9 @@ import (
 type ChannelKind string
 
 const (
-	ChannelUI  ChannelKind = "ui"
+	// ChannelUI exercises a flow through a user interface.
+	ChannelUI ChannelKind = "ui"
+	// ChannelAPI exercises a flow through an API surface.
 	ChannelAPI ChannelKind = "api"
 )
 
@@ -30,10 +32,14 @@ const (
 type AuthMode string
 
 const (
-	AuthModeNone    AuthMode = "none"
+	// AuthModeNone performs the flow channel without authentication.
+	AuthModeNone AuthMode = "none"
+	// AuthModeSession authenticates the flow channel with a session cookie.
 	AuthModeSession AuthMode = "session"
-	AuthModeBearer  AuthMode = "bearer"
-	AuthModeAPIKey  AuthMode = "api_key"
+	// AuthModeBearer authenticates the flow channel with a bearer token.
+	AuthModeBearer AuthMode = "bearer"
+	// AuthModeAPIKey authenticates the flow channel with an API key.
+	AuthModeAPIKey AuthMode = "api_key"
 )
 
 // Definition is the neutral, cross-layer description of a reusable business
