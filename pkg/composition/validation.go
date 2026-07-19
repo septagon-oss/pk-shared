@@ -10,6 +10,7 @@ package composition
 import (
 	"cmp"
 	"fmt"
+	"maps"
 	"reflect"
 	"slices"
 	"strconv"
@@ -639,9 +640,7 @@ func deepCopyAny(value any) any {
 		return out
 	case map[string]string:
 		out := make(map[string]string, len(typed))
-		for key, value := range typed {
-			out[key] = value
-		}
+		maps.Copy(out, typed)
 		return out
 	case []string:
 		return slices.Clone(typed)
