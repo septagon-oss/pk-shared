@@ -1,3 +1,7 @@
+// Validates: REQ-SAAS-001.
+// Per: ADR-0029.
+// Discipline: C-14.
+
 package statemachine
 
 // definition_test.go validates state-machine defaults, traversal helpers,
@@ -231,7 +235,7 @@ func assertStrings(t *testing.T, got, want []string) {
 }
 
 func containsLine(output, want string) bool {
-	for _, line := range strings.Split(output, "\n") {
+	for line := range strings.SplitSeq(output, "\n") {
 		if strings.TrimSpace(line) == want {
 			return true
 		}

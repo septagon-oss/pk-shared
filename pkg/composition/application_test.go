@@ -153,7 +153,7 @@ func TestNewApplicationFromPreset(t *testing.T) {
 	}
 }
 
-func TestMergeOverlays(t *testing.T) {
+func TestApplyOverlaysBasicOperations(t *testing.T) {
 	base := map[string]any{"title": "Hello", "count": 42, "remove": "gone"}
 	overlays := []OverlayRef{
 		{Name: "customize", Target: "my_module", Patches: []OverlayPatch{
@@ -164,7 +164,10 @@ func TestMergeOverlays(t *testing.T) {
 		}},
 		{Name: "other", Target: "other_module", Patches: []OverlayPatch{{Op: "replace", Path: "/title", Value: "Wrong"}}},
 	}
-	result := MergeOverlays(base, overlays, "my_module")
+	result, issues := ApplyOverlays(base, overlays, "my_module")
+	if len(issues) != 0 {
+		t.Fatalf("ApplyOverlays issues = %#v", issues)
+	}
 	if result["title"] != "Updated" || result["count"] != 42 {
 		t.Fatalf("merged result = %#v", result)
 	}

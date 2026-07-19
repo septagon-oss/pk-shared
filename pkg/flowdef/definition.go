@@ -1,3 +1,7 @@
+// Implements: REQ-TEST-001.
+// Per: ADR-0021.
+// Discipline: C-14.
+
 // Package flowdef defines neutral, reusable flow contracts.
 //
 // A flow definition describes what user or API behavior exists and how it can
@@ -13,6 +17,7 @@ package flowdef
 
 import (
 	"fmt"
+	"maps"
 	"net/http"
 	"slices"
 	"strings"
@@ -278,8 +283,6 @@ func cloneStringMap(values map[string]string) map[string]string {
 		return nil
 	}
 	cloned := make(map[string]string, len(values))
-	for key, value := range values {
-		cloned[key] = value
-	}
+	maps.Copy(cloned, values)
 	return cloned
 }
