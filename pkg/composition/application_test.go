@@ -3,8 +3,9 @@ package composition
 // application_test.go validates the public composition descriptor, validation,
 // overlay, and export contracts before they are consumed by Pro adapters.
 //
-// ADR: ADR-0005 (no silent failures), ADR-0029 (file purpose declaration).
-// Convention: C-14 (every Go file declares its purpose).
+// Validates: REQ-002.
+// Per: ADR-0005 (no silent failures), ADR-0029 (file purpose declaration).
+// Discipline: C-14.
 
 import (
 	"slices"
@@ -69,6 +70,39 @@ func TestValidateRejectsInvalidApplication(t *testing.T) {
 				t.Fatalf("errors = %#v; want code %q", report.Errors, tt.code)
 			}
 		})
+	}
+}
+
+func TestValidateReportsEnabledModulesInDeterministicOrder(t *testing.T) {
+	t.Parallel()
+
+	app := &Application{
+		APIVersion: APIVersionV1,
+		Kind:       KindApplication,
+		Metadata:   AppMetadata{Name: "deterministic-errors"},
+		Spec: ApplicationSpec{Modules: []ModuleRef{
+			{Name: "z_module", Enabled: true},
+			{Name: "c_module", Enabled: true},
+			{Name: "h_module", Enabled: true},
+			{Name: "a_module", Enabled: true},
+			{Name: "f_module", Enabled: true},
+			{Name: "b_module", Enabled: true},
+			{Name: "e_module", Enabled: true},
+			{Name: "d_module", Enabled: true},
+		}},
+	}
+
+	report := Validate(app, nil)
+	got := make([]string, 0, len(report.Errors))
+	for _, issue := range report.Errors {
+		if issue.Code != "unknown_module" {
+			t.Fatalf("Validate() issue = %#v, want only unknown_module", issue)
+		}
+		got = append(got, issue.Module)
+	}
+	want := []string{"a_module", "b_module", "c_module", "d_module", "e_module", "f_module", "h_module", "z_module"}
+	if !slices.Equal(got, want) {
+		t.Fatalf("Validate() error modules = %v; want %v", got, want)
 	}
 }
 

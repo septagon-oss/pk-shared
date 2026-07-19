@@ -3,8 +3,9 @@ package composition
 // validation.go owns structural validation and deterministic overlay
 // application for application composition descriptors.
 //
-// ADR: ADR-0005 (no silent failures), ADR-0029 (file purpose declaration).
-// Convention: C-10 (shared builders return errors), C-14 (file purpose declaration).
+// Implements: REQ-002.
+// Per: ADR-0005 (no silent failures), ADR-0029 (file purpose declaration); C-10 (shared builders return errors).
+// Discipline: C-14.
 
 import (
 	"cmp"
@@ -112,7 +113,12 @@ func Validate(app *Application, catalog []ModuleCatalogEntry) *ValidationReport 
 		}
 	}
 
+	enabledNames := make([]string, 0, len(enabledSet))
 	for name := range enabledSet {
+		enabledNames = append(enabledNames, name)
+	}
+	slices.Sort(enabledNames)
+	for _, name := range enabledNames {
 		entry, exists := catalogMap[name]
 		if !exists {
 			report.addError(name, "unknown_module", fmt.Sprintf("module %q is not in the catalog", name))
@@ -314,15 +320,6 @@ func ApplyOverlays(base map[string]any, overlays []OverlayRef, target string) (m
 		}
 	}
 	return result, issues
-}
-
-// MergeOverlays applies overlays and returns only the merged map.
-//
-// Deprecated: use ApplyOverlays when the caller can surface structured overlay
-// diagnostics.
-func MergeOverlays(base map[string]any, overlays []OverlayRef, target string) map[string]any {
-	result, _ := ApplyOverlays(base, overlays, target)
-	return result
 }
 
 func applyOverlayPatch(root map[string]any, patch OverlayPatch) (map[string]any, error) {
