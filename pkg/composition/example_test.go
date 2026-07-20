@@ -1,5 +1,8 @@
 package composition_test
 
+// Validates: REQ-002.
+// Per: ADR-0017.
+// Discipline: C-14.
 // example_test.go provides runnable godoc examples for the composition
 // package's application descriptor and validation surface.
 //

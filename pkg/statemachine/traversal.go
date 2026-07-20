@@ -1,5 +1,8 @@
 package statemachine
 
+// Implements: REQ-SAAS-001.
+// Per: ADR-0006.
+// Discipline: C-14.
 // traversal.go owns read-only traversal and Mermaid projection helpers for
 // declarative state-machine definitions.
 //

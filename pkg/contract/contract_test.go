@@ -1,5 +1,8 @@
 package contract
 
+// Validates: REQ-002.
+// Per: ADR-0009.
+// Discipline: C-14.
 // contract_test.go validates the tiny shared identifier normalization contract.
 //
 // ADR: ADR-0029 (file purpose declaration).

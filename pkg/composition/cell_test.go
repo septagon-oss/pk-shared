@@ -1,5 +1,8 @@
 package composition
 
+// Validates: REQ-002.
+// Per: ADR-0017.
+// Discipline: C-14.
 // cell_test.go validates topology-cell normalization and defaults used by
 // composable modules, blueprints, catalogs, components, and surfaces.
 //

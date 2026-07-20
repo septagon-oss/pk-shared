@@ -1,5 +1,8 @@
 package statemachine_test
 
+// Validates: REQ-SAAS-001.
+// Per: ADR-0006.
+// Discipline: C-14.
 // example_test.go provides runnable godoc examples for the statemachine
 // package's declaration, validation, and traversal surface.
 //

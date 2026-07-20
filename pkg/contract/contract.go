@@ -2,6 +2,9 @@
 // repos.
 package contract
 
+// Implements: REQ-002.
+// Per: ADR-0009.
+// Discipline: C-14.
 // contract.go owns the smallest cross-repo identifiers that would otherwise
 // create dependency cycles between OSS layers.
 //

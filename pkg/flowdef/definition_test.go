@@ -1,5 +1,8 @@
 package flowdef
 
+// Validates: REQ-015.
+// Per: ADR-0021.
+// Discipline: C-14.
 // definition_test.go validates reusable flow definitions, channel validation,
 // canonical JSON shape, and defensive copies.
 //

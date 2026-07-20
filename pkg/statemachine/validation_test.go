@@ -1,5 +1,8 @@
 package statemachine
 
+// Validates: REQ-SAAS-001.
+// Per: ADR-0006.
+// Discipline: C-14.
 // validation_test.go validates state-machine structural diagnostics and error
 // formatting for invalid lifecycle definitions.
 //

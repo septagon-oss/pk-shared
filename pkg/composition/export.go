@@ -1,5 +1,8 @@
 package composition
 
+// Implements: REQ-002.
+// Per: ADR-0017.
+// Discipline: C-14.
 // export.go owns derived map views used by deployment/rendering tools while
 // keeping the composition descriptor as the source of truth.
 //

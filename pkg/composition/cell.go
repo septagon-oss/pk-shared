@@ -1,5 +1,8 @@
 package composition
 
+// Implements: REQ-002.
+// Per: ADR-0017.
+// Discipline: C-14.
 // cell.go owns provider-neutral topology cells used by module, blueprint,
 // catalog, component, and surface composition manifests.
 //

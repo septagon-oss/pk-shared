@@ -6,6 +6,9 @@
 // belong in downstream runtimes.
 package statemachine
 
+// Implements: REQ-SAAS-001.
+// Per: ADR-0006.
+// Discipline: C-14.
 // definition.go owns the portable state-machine declaration types and
 // defaults shared by modules, tooling, and downstream runtimes.
 //

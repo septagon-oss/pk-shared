@@ -1,5 +1,8 @@
 package statemachine
 
+// Implements: REQ-SAAS-001.
+// Per: ADR-0006.
+// Discipline: C-14.
 // validation.go owns structural diagnostics for portable state-machine
 // definitions without executing guards, actions, or persistence behavior.
 //

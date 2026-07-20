@@ -2,6 +2,9 @@
 // composition descriptors.
 package composition
 
+// Implements: REQ-002.
+// Per: ADR-0017.
+// Discipline: C-14.
 // application.go owns the stable application composition wire contract shared
 // by OSS tools, modules, apps, and the private downstream.
 //
