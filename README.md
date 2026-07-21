@@ -1,5 +1,9 @@
 # pk-shared
 
+> Part of [PlatformKit](https://github.com/septagon-oss/platformkit) — the open-source Go backend for multi-tenant SaaS.
+
+**Depends on.** Nothing else in PlatformKit. It is a leaf of the dependency graph, so anything in the family can depend on it without creating a cycle.
+
 [![Go Reference](https://pkg.go.dev/badge/github.com/septagon-oss/pk-shared.svg)](https://pkg.go.dev/github.com/septagon-oss/pk-shared)
 [![CI](https://github.com/septagon-oss/pk-shared/actions/workflows/go.yml/badge.svg)](https://github.com/septagon-oss/pk-shared/actions/workflows/go.yml)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
@@ -55,6 +59,8 @@ func main() {
 - `pkg/contract`: stable module identifiers and semantic version vocabulary
 - `pkg/flowdef`: neutral reusable flow definitions for UI/API coverage,
   authoring, and E2E/testkit bridges
+- `pkg/pathsegment`: canonical opaque-ID URL path-segment encoding with
+  fail-closed decoding, so entity identifiers survive any HTTP stack
 - `pkg/statemachine`: declarative lifecycle definitions, structural validation,
   read-only traversal helpers, and Mermaid rendering
 
