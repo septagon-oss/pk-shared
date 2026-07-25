@@ -18,7 +18,7 @@ instead of becoming ambient shared state.
 ## Install
 
 ```bash
-go get github.com/septagon-oss/pk-shared@v0.2.0
+go get github.com/septagon-oss/pk-shared@v0.3.0
 ```
 
 ## Usage
