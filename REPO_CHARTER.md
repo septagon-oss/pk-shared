@@ -7,10 +7,8 @@ Shared vocabulary and small primitives used across PlatformKit OSS repos. Keeps 
 ## In Scope
 
 - Composition descriptors (`pkg/composition`): module capability declarations
-- Contract identifiers (`pkg/contract`): type-safe ID + version pairs
 - Canonical URL path segments (`pkg/pathsegment`): lossless, fail-closed transport for opaque entity IDs
 - Flow definitions (`pkg/flowdef`): state machine specification format
-- State machine (`pkg/statemachine`): generic FSM with Mermaid rendering
 
 ## Out of Scope
 

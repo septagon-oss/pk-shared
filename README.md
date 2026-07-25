@@ -10,15 +10,15 @@
 
 `pk-shared` is the deliberately small, provider-neutral contract library for the
 OSS PlatformKit family (`pk-core`, `pk-design`, `pk-modules`, `pk-apps`). It owns
-only the cross-repo vocabulary — application composition descriptors, stable
-identifiers, neutral flow definitions, and a portable state-machine model — that
-cannot cleanly belong to a single owning repo. If a contract has a natural home,
-it lives there instead of becoming ambient shared state.
+only the cross-repo vocabulary — application composition descriptors, neutral
+flow definitions, and canonical URL path segments — that cannot cleanly belong
+to a single owning repo. If a contract has a natural home, it lives there
+instead of becoming ambient shared state.
 
 ## Install
 
 ```bash
-go get github.com/septagon-oss/pk-shared@v0.1.0
+go get github.com/septagon-oss/pk-shared@v0.2.0
 ```
 
 ## Usage
@@ -56,13 +56,10 @@ func main() {
 - `pkg/composition`: application, overlay, and topology-cell descriptors used to
   compose modules, surfaces, catalogs, and infrastructure blueprints, plus
   validation and Helm/config export helpers
-- `pkg/contract`: stable module identifiers and semantic version vocabulary
 - `pkg/flowdef`: neutral reusable flow definitions for UI/API coverage,
   authoring, and E2E/testkit bridges
 - `pkg/pathsegment`: canonical opaque-ID URL path-segment encoding with
   fail-closed decoding, so entity identifiers survive any HTTP stack
-- `pkg/statemachine`: declarative lifecycle definitions, structural validation,
-  read-only traversal helpers, and Mermaid rendering
 
 ## Verify
 
