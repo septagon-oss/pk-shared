@@ -10,15 +10,15 @@
 
 `pk-shared` is the deliberately small, provider-neutral contract library for the
 OSS PlatformKit family (`pk-core`, `pk-design`, `pk-modules`, `pk-apps`). It owns
-only the cross-repo vocabulary — application composition descriptors, neutral
-flow definitions, and canonical URL path segments — that cannot cleanly belong
-to a single owning repo. If a contract has a natural home, it lives there
-instead of becoming ambient shared state.
+only the cross-repo vocabulary — the JSON API wire contract, application
+composition descriptors, neutral flow definitions, and canonical URL path
+segments — that cannot cleanly belong to a single owning repo. If a contract
+has a natural home, it lives there instead of becoming ambient shared state.
 
 ## Install
 
 ```bash
-go get github.com/septagon-oss/pk-shared@v0.3.0
+go get github.com/septagon-oss/pk-shared@v0.5.0
 ```
 
 ## Usage
@@ -53,9 +53,14 @@ func main() {
 
 ## Current Surface
 
+- `pkg/apiwire`: the JSON API wire contract (REQ-021) — canonical list-query
+  parameters with legacy aliases and `{"data": ...}` item/list envelopes shared
+  by pk-client and every conforming server; errors remain RFC 9457 problems
 - `pkg/composition`: application, overlay, and topology-cell descriptors used to
   compose modules, surfaces, catalogs, and infrastructure blueprints, plus
   validation and Helm/config export helpers
+- `pkg/permissiontoken`: the canonical, provider-neutral `resource:action`
+  permission grammar, including the bare `*` full-access declaration
 - `pkg/flowdef`: neutral reusable flow definitions for UI/API coverage,
   authoring, and E2E/testkit bridges
 - `pkg/pathsegment`: canonical opaque-ID URL path-segment encoding with
